@@ -1,3 +1,7 @@
+@import '../colors.module.css';
+@import '../variables.module.css';
+@import './config.module.css';
+
 .button {
   align-content: center;
   align-items: center;
@@ -5,12 +9,12 @@
   cursor: pointer;
   display: inline-block;
   flex-direction: row;
-  font-size: 14px;
+  font-size: calc(1.4 * var(--unit));
   font-weight: 500;
-  height: 36px;
+  height: var(--button-height);
   justify-content: center;
   letter-spacing: 0;
-  line-height: 36px;
+  line-height: var(--button-height);
   outline: none;
   padding: 0;
   position: relative;
@@ -18,32 +22,14 @@
   text-decoration: none;
   text-transform: uppercase;
   transition:
-    box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
-    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow 0.2s var(--animation-curve-fast-out-linear-in),
+    background-color 0.2s var(--animation-curve-default),
+    color 0.2s var(--animation-curve-default);
   white-space: nowrap;
-  box-sizing: border-box;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%
-}
-.button *,
-    .button *::after,
-    .button *::before {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
-  -webkit-touch-callout: none;
-    }
-.button > input {
+
+  @apply --reset;
+
+  & > input {
     height: 0.1px;
     margin: 0;
     opacity: 0;
@@ -53,91 +39,106 @@
     width: 0.1px;
     z-index: 0;
   }
-.button::-moz-focus-inner {
+
+  &::-moz-focus-inner {
     border: 0;
   }
-.button > span:not([data-react-toolbox='tooltip']) {
+
+  & > span:not([data-react-toolbox='tooltip']) {
     display: inline-block;
-    line-height: 36px;
+    line-height: var(--button-height);
     vertical-align: middle;
   }
-.button > svg {
+
+  & > svg {
     display: inline-block;
     fill: currentColor;
     font-size: 120%;
-    height: 36px;
+    height: var(--button-height);
     vertical-align: top;
     width: 1em;
   }
-.button > * {
+
+  & > * {
     pointer-events: none;
   }
-.button > .rippleWrapper {
+
+  & > .rippleWrapper {
     overflow: hidden;
   }
-.button[disabled] {
-    color: rgba(0, 0, 0, 0.26);
+
+  &[disabled] {
+    color: var(--button-disabled-text-color);
     cursor: auto;
     pointer-events: none;
   }
-.squared {
-  border-radius: 2px;
-  min-width: 90px;
-  padding: 0 12px
 }
-.squared .icon {
+
+.squared {
+  border-radius: var(--button-border-radius);
+  min-width: var(--button-squared-min-width);
+  padding: var(--button-squared-padding);
+
+  & .icon {
     font-size: 120%;
-    margin-right: 6px;
+    margin-right: var(--button-squared-icon-margin);
     vertical-align: middle;
   }
-.squared > svg {
-    margin-right: 5px;
+
+  & > svg {
+    margin-right: calc(0.5 * var(--unit));
   }
-.solid[disabled] {
-    background-color: rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.solid {
+  &[disabled] {
+    background-color: var(--button-disabled-background-color);
+    box-shadow: var(--shadow-2p);
   }
-.solid:active {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+  &:active {
+    box-shadow: var(--shadow-2p);
   }
-.solid:focus:not(:active) {
+
+  &:focus:not(:active) {
     box-shadow:
       0 0 8px rgba(0, 0, 0, 0.18),
       0 8px 16px rgba(0, 0, 0, 0.36);
   }
+}
+
 .raised {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-2p);
   composes: button;
   composes: squared;
   composes: solid;
 }
+
 .flat {
   background: transparent;
   composes: button;
   composes: squared;
 }
+
 .toggle {
   background: transparent;
   border-radius: 50%;
   composes: button;
   vertical-align: middle;
-  width: 36px
-}
-.toggle > .icon,
-  .toggle svg {
-    font-size: 20px;
-    line-height: 36px;
+  width: var(--button-height);
+
+  & > .icon,
+  & svg {
+    font-size: var(--button-toggle-font-size);
+    line-height: var(--button-height);
     vertical-align: top;
   }
-.toggle > .rippleWrapper {
+
+  & > .rippleWrapper {
     border-radius: 50%;
   }
+}
+
 .floating {
   border-radius: 50%;
   box-shadow:
@@ -145,93 +146,126 @@
     0 1px 1px 0 rgba(0, 0, 0, 0.24);
   composes: button;
   composes: solid;
-  font-size: 24px;
-  height: 56px;
-  width: 56px
-}
-.floating .icon:not([data-react-toolbox='tooltip']) {
-    line-height: 56px;
+  font-size: var(--button-floating-font-size);
+  height: var(--button-floating-height);
+  width: var(--button-floating-height);
+
+  & .icon:not([data-react-toolbox='tooltip']) {
+    line-height: var(--button-floating-height);
   }
-.floating > .rippleWrapper {
+
+  & > .rippleWrapper {
     border-radius: 50%;
   }
-.floating.mini {
-    font-size: 17.77778px;
-    height: 40px;
-    width: 40px
-  }
-.floating.mini .icon {
-      line-height: 40px;
+
+  &.mini {
+    font-size: var(--button-floating-mini-font-size);
+    height: var(--button-floating-mini-height);
+    width: var(--button-floating-mini-height);
+
+    & .icon {
+      line-height: var(--button-floating-mini-height);
     }
-.primary:not([disabled]).raised,
-  .primary:not([disabled]).floating {
-    background: rgb(63, 81, 181);
-    color: rgb(255, 255, 255);
   }
-.primary:not([disabled]).flat {
-    color: rgb(63, 81, 181)
+}
+
+.primary:not([disabled]) {
+  &.raised,
+  &.floating {
+    background: var(--button-primary-color);
+    color: var(--button-primary-color-contrast);
   }
-.primary:not([disabled]).flat:hover {
-      background: rgba(63, 81, 181, 0.2);
+
+  &.flat {
+    color: var(--button-primary-color);
+
+    &:hover {
+      background: var(--button-primary-color-hover);
     }
-.primary:not([disabled]).toggle {
-    color: rgb(63, 81, 181)
   }
-.primary:not([disabled]).toggle:focus:not(:active) {
-      background: rgba(63, 81, 181, 0.2);
+
+  &.toggle {
+    color: var(--button-primary-color);
+
+    &:focus:not(:active) {
+      background: var(--button-primary-color-hover);
     }
-.accent:not([disabled]).raised,
-  .accent:not([disabled]).floating {
-    background: rgb(255, 64, 129);
-    color: rgb(255, 255, 255);
   }
-.accent:not([disabled]).flat {
-    color: rgb(255, 64, 129)
+}
+
+.accent:not([disabled]) {
+  &.raised,
+  &.floating {
+    background: var(--button-accent-color);
+    color: var(--button-accent-color-contrast);
   }
-.accent:not([disabled]).flat:hover {
-      background: rgba(255, 64, 129, 0.2);
+
+  &.flat {
+    color: var(--button-accent-color);
+
+    &:hover {
+      background: var(--button-accent-color-hover);
     }
-.accent:not([disabled]).toggle {
-    color: rgb(255, 64, 129)
   }
-.accent:not([disabled]).toggle:focus:not(:active) {
-      background: rgba(255, 64, 129, 0.2);
+
+  &.toggle {
+    color: var(--button-accent-color);
+
+    &:focus:not(:active) {
+      background: var(--button-accent-color-hover);
     }
-.neutral:not([disabled]).raised,
-  .neutral:not([disabled]).floating {
-    background-color: rgb(255, 255, 255);
-    color: rgb(33, 33, 33);
   }
-.neutral:not([disabled]).flat {
-    color: rgb(33, 33, 33)
+}
+
+.neutral:not([disabled]) {
+  &.raised,
+  &.floating {
+    background-color: var(--button-neutral-color);
+    color: var(--button-neutral-color-contrast);
   }
-.neutral:not([disabled]).flat:hover {
-      background: rgba(33, 33, 33, 0.2);
+
+  &.flat {
+    color: var(--button-neutral-color-contrast);
+
+    &:hover {
+      background: var(--button-neutral-color-hover);
     }
-.neutral:not([disabled]).toggle {
-    color: rgb(33, 33, 33)
   }
-.neutral:not([disabled]).toggle:focus:not(:active) {
-      background: rgba(33, 33, 33, 0.2);
+
+  &.toggle {
+    color: var(--button-neutral-color-contrast);
+
+    &:focus:not(:active) {
+      background: var(--button-neutral-color-hover);
     }
-.neutral:not([disabled]).inverse.raised,
-    .neutral:not([disabled]).inverse.floating {
-      background-color: rgb(33, 33, 33);
-      color: rgb(255, 255, 255);
+  }
+
+  &.inverse {
+    &.raised,
+    &.floating {
+      background-color: var(--button-neutral-color-contrast);
+      color: var(--button-neutral-color);
     }
-.neutral:not([disabled]).inverse.flat {
-      color: rgb(255, 255, 255)
-    }
-.neutral:not([disabled]).inverse.flat:hover {
-        background: rgba(33, 33, 33, 0.2);
+
+    &.flat {
+      color: var(--button-neutral-color);
+
+      &:hover {
+        background: var(--button-neutral-color-hover);
       }
-.neutral:not([disabled]).inverse.toggle {
-      color: rgb(255, 255, 255)
     }
-.neutral:not([disabled]).inverse.toggle:focus:not(:active) {
-        background: rgba(33, 33, 33, 0.2);
+
+    &.toggle {
+      color: var(--button-neutral-color);
+
+      &:focus:not(:active) {
+        background: var(--button-neutral-color-hover);
       }
+    }
+  }
+}
+
 .neutral.inverse[disabled] {
-  background-color: rgba(0, 0, 0, 0.08);
-  color: rgba(0, 0, 0, 0.54);
+  background-color: var(--button-disabled-background-inverse);
+  color: var(--button-disabled-text-color-inverse);
 }

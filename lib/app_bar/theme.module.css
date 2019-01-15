@@ -1,86 +1,71 @@
-/* Orientation */
-/* Devices (defined by max width) */
-/* Devices (defined by min-width) */
+@import '../colors.module.css';
+@import '../media.module.css';
+@import '../variables.module.css';
+@import './config.module.css';
+
 .appBar {
-  background: rgb(48, 63, 159);
-  color: rgb(255, 255, 255);
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  height: 64px;
-  padding: 0 24px;
+  background: var(--appbar-color);
+  color: var(--appbar-contrast);
+  font-family: var(--preferred-font);
+  height: var(--appbar-height);
+  padding: 0 var(--appbar-h-padding);
   transition-duration: 0.5s;
-  transition-property: -webkit-transform;
   transition-property: transform;
-  transition-property: transform, -webkit-transform;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  box-sizing: border-box;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%
-}
-.appBar *,
-    .appBar *::after,
-    .appBar *::before {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
-  -webkit-touch-callout: none;
-    }
-.appBar.scrollHide {
-    -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
+
+  @apply --reset;
+
+  &.scrollHide {
+    transform: translateY(-100%);
   }
-.appBar:not(.flat) {
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-    0 1px 10px 0 rgba(0, 0, 0, 0.12),
-    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+
+  &:not(.flat) {
+    box-shadow: var(--shadow-4p);
   }
-.appBar.fixed {
+
+  &.fixed {
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 300;
+    z-index: var(--z-index-highest);
   }
-.appBar .inner {
+
+  & .inner {
     align-items: center;
     display: flex;
     height: 100%;
     position: relative;
     width: 100%;
   }
-.appBar a {
-    color: rgb(255, 255, 255);
+
+  & a {
+    color: var(--appbar-contrast);
   }
-@media screen and (max-width: 480px) and (orientation: portrait) {
-.appBar {
-    height: 56px
+
+  @media screen and (--xxs-viewport) and (--portrait) {
+    height: var(--appbar-height-m-portrait);
+  }
+
+  @media screen and (--xs-viewport) and (--landscape) {
+    height: var(--appbar-height-m-landscape);
+  }
 }
-  }
-@media screen and (max-width: 600px) and (orientation: landscape) {
-.appBar {
-    height: 48px
-}
-  }
+
 .title {
   flex-grow: 1;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: var(--appbar-title-font-size);
+  font-weight: var(--appbar-title-font-weight);
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .leftIcon {
-  margin-left: -12px;
+  margin-left: calc(-1.2 * var(--unit));
 }
+
 .rightIcon {
   margin-left: auto;
-  margin-right: -12px;
+  margin-right: calc(-1.2 * var(--unit));
 }

@@ -1,109 +1,103 @@
+@import '../colors.module.css';
+@import '../variables.module.css';
+@import './config.module.css';
+
 .radio {
-  border: 2px solid rgb(0, 0, 0);
+  border: calc(0.2 * var(--unit)) solid var(--radio-text-color);
   border-radius: 50%;
   cursor: pointer;
   display: inline-block;
-  height: 20px;
+  height: var(--radio-button-size);
   position: relative;
   vertical-align: top;
-  width: 20px;
-  box-sizing: border-box;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%
-}
-.radio *,
-    .radio *::after,
-    .radio *::before {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
-  -webkit-touch-callout: none;
-    }
-.radio::before {
-    background-color: rgb(63, 81, 181);
+  width: var(--radio-button-size);
+
+  @apply --reset;
+
+  &::before {
+    background-color: var(--radio-inner-color);
     border-radius: 50%;
     content: '';
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0);
+    transition: transform 0.2s var(--animation-curve-default);
     width: 100%;
   }
-.radio .ripple {
-    background-color: rgb(63, 81, 181);
+
+  & .ripple {
+    background-color: var(--radio-inner-color);
     opacity: 0.3;
     transition-duration: 650ms;
   }
-.radioChecked {
-  border: 2px solid rgb(63, 81, 181);
-  composes: radio
 }
-.radioChecked::before {
-    -webkit-transform: scale(0.65);
-            transform: scale(0.65);
+
+.radioChecked {
+  border: calc(0.2 * var(--unit)) solid var(--radio-inner-color);
+  composes: radio;
+
+  &::before {
+    transform: scale(0.65);
   }
+}
+
 .field {
   display: block;
-  height: 20px;
-  margin-bottom: 15px;
+  height: var(--radio-button-size);
+  margin-bottom: var(--radio-field-margin-bottom);
   position: relative;
   white-space: nowrap;
 }
+
 .text {
-  color: rgb(0, 0, 0);
+  color: var(--radio-text-color);
   display: inline-block;
-  font-size: 14px;
-  line-height: 20px;
-  padding-left: 10px;
+  font-size: var(--radio-text-font-size);
+  line-height: var(--radio-button-size);
+  padding-left: var(--unit);
   vertical-align: top;
   white-space: nowrap;
 }
+
 .disabled {
-  composes: field
-}
-.disabled .text {
-    color: rgba(0, 0, 0, 0.26);
+  composes: field;
+
+  & .text {
+    color: var(--radio-disabled-color);
   }
-.disabled .radio {
-    border-color: rgba(0, 0, 0, 0.26);
+
+  & .radio {
+    border-color: var(--radio-disabled-color);
     cursor: auto;
   }
-.disabled .radioChecked {
-    border-color: rgba(0, 0, 0, 0.26);
-    cursor: auto
-  }
-.disabled .radioChecked::before {
-      background-color: rgba(0, 0, 0, 0.26);
+
+  & .radioChecked {
+    border-color: var(--radio-disabled-color);
+    cursor: auto;
+
+    &::before {
+      background-color: var(--radio-disabled-color);
     }
+  }
+}
+
 .input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: 0;
   height: 0;
   margin: 0;
   opacity: 0;
   padding: 0;
   position: absolute;
-  width: 0
+  width: 0;
+
+  &:focus ~ .radio {
+    box-shadow: 0 0 0 var(--unit) var(--radio-focus-color);
+  }
+
+  &:focus ~ .radioChecked {
+    box-shadow: 0 0 0 var(--unit) var(--radio-checked-focus-color);
+  }
 }
-.input:focus ~ .radio {
-    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-.input:focus ~ .radioChecked {
-    box-shadow: 0 0 0 10px rgba(63, 81, 181, 0.26);
-  }

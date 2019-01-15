@@ -1,126 +1,127 @@
+@import '../colors.module.css';
+@import '../variables.module.css';
+@import './config.module.css';
+
 .card {
-  background: rgb(255, 255, 255);
-  border-radius: 2px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  background: var(--card-background-color);
+  border-radius: calc(0.2 * var(--unit));
+  box-shadow: var(--shadow-2p);
   display: flex;
   flex-direction: column;
-  font-size: 14px;
+  font-size: var(--card-font-size);
   overflow: hidden;
   width: 100%;
-  box-sizing: border-box;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%
-}
-.card *,
-    .card *::after,
-    .card *::before {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
-  -webkit-touch-callout: none;
-    }
-.card.raised {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0 3px 14px 2px rgba(0, 0, 0, 0.12),
-    0 5px 5px -3px rgba(0, 0, 0, 0.2);
+
+  @apply --reset;
+
+  &.raised {
+    box-shadow: var(--shadow-8p);
   }
+}
+
 .cardTitle {
   align-items: center;
-  display: flex
-}
-.cardTitle [data-react-toolbox='avatar'] {
-    margin-right: 13px;
+  display: flex;
+
+  & [data-react-toolbox='avatar'] {
+    margin-right: calc(1.3 * var(--unit));
   }
-.cardTitle .title {
-    font-size: 20px;
+
+  & .title {
+    font-size: calc(2 * var(--unit));
     font-weight: 500;
     letter-spacing: 0.02em;
     line-height: 1;
     margin: 0;
     padding: 0;
   }
-.cardTitle .subtitle {
-    color: rgb(117, 117, 117);
-    font-size: 14px;
+
+  & .subtitle {
+    color: var(--color-text-secondary);
+    font-size: calc(1.4 * var(--unit));
     font-weight: 400;
     letter-spacing: 0;
-    line-height: 24px;
+    line-height: calc(2.4 * var(--unit));
     margin: 0;
     padding: 0;
   }
-.cardTitle.large {
-    padding: 20px 16px 14px
-  }
-.cardTitle.large .title {
-      font-size: 24px;
+
+  &.large {
+    padding: var(--card-padding-lg) var(--card-padding) calc(var(--card-padding) - 0.2 * var(--unit));
+
+    & .title {
+      font-size: calc(2.4 * var(--unit));
       -moz-osx-font-smoothing: grayscale;
       font-weight: 400;
       line-height: 1.25;
     }
-.cardTitle.small {
-    padding: 16px
   }
-.cardTitle.small .title {
+
+  &.small {
+    padding: var(--card-padding);
+
+    & .title {
       font-size: 1.4rem;
       letter-spacing: 0;
       line-height: 1.4;
     }
-.cardTitle.small .subtitle {
+
+    & .subtitle {
       font-weight: 500;
       line-height: 1.4;
     }
+  }
+}
+
 .cardTitle,
 .cardText {
-  padding: 14px 16px
-}
-.cardTitle p, .cardText p {
-    font-size: 14px;
+  padding: calc(var(--card-padding) - 0.2 * var(--unit)) var(--card-padding);
+
+  & p {
+    font-size: calc(1.4 * var(--unit));
     font-weight: 400;
     letter-spacing: 0;
-    line-height: 24px;
+    line-height: calc(2.4 * var(--unit));
     margin: 0;
   }
-.cardTitle:last-child, .cardText:last-child {
-    padding-bottom: 20px;
+
+  &:last-child {
+    padding-bottom: var(--card-padding-lg);
   }
-.cardTitle + .cardText, .cardText + .cardText {
+
+  & + .cardText {
     padding-top: 0;
   }
+}
+
 .cardActions {
   align-items: center;
   display: flex;
   justify-content: flex-start;
-  padding: 8px
-}
-.cardActions [data-react-toolbox='button'] {
-    margin: 0 4px;
+  padding: var(--card-padding-sm);
+
+  & [data-react-toolbox='button'] {
+    margin: 0 calc(var(--card-padding-sm) / 2);
     min-width: 0;
-    padding: 0 8px
-  }
-.cardActions [data-react-toolbox='button']:first-child {
+    padding: 0 var(--card-padding-sm);
+
+    &:first-child {
       margin-left: 0;
     }
-.cardActions [data-react-toolbox='button']:last-child {
+
+    &:last-child {
       margin-right: 0;
     }
+  }
+}
+
 .cardMedia {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative
-}
-.cardMedia .content {
+  position: relative;
+
+  & .content {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -130,39 +131,49 @@
     top: 0;
     width: 100%;
   }
-.cardMedia.wide,
-  .cardMedia.square {
-    width: 100%
-  }
-.cardMedia.wide .content, .cardMedia.square .content {
+
+  &.wide,
+  &.square {
+    width: 100%;
+
+    & .content {
       height: 100%;
       position: absolute;
     }
-.cardMedia.wide .content > iframe,
-    .cardMedia.wide .content > video,
-    .cardMedia.wide .content > img,
-    .cardMedia.square .content > iframe,
-    .cardMedia.square .content > video,
-    .cardMedia.square .content > img {
+
+    & .content > iframe,
+    & .content > video,
+    & .content > img {
       max-width: 100%;
     }
-.cardMedia::after {
+  }
+
+  &::after {
     content: '';
     display: block;
     height: 0;
   }
-.cardMedia.wide::after {
+
+  &.wide::after {
     padding-top: 56.25%;
   }
-.cardMedia.square::after {
+
+  &.square::after {
     padding-top: 100%;
   }
-.cardMedia .cardTitle .title,
-    .cardMedia .cardTitle .subtitle {
-      color: rgb(255, 255, 255);
+
+  & .cardTitle {
+    & .title,
+    & .subtitle {
+      color: var(--card-color-white);
     }
-.cardMedia .contentOverlay .cardTitle,
-    .cardMedia .contentOverlay .cardActions,
-    .cardMedia .contentOverlay .cardText {
-      background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  & .contentOverlay {
+    & .cardTitle,
+    & .cardActions,
+    & .cardText {
+      background-color: var(--card-text-overlay);
     }
+  }
+}

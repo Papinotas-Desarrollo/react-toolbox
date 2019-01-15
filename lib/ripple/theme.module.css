@@ -1,3 +1,6 @@
+@import '../variables.module.css';
+@import './config.module.css';
+
 .rippleWrapper {
   bottom: 0;
   left: 0;
@@ -5,8 +8,9 @@
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: var(--z-index-normal);
 }
+
 .ripple {
   background-color: currentColor;
   border-radius: 50%;
@@ -14,24 +18,22 @@
   pointer-events: none;
   position: absolute;
   top: 50%;
-  -webkit-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
-  transition-duration: 800ms;
-  z-index: 100
-}
-.ripple.rippleRestarting {
-    opacity: 0.3;
+  transform-origin: 50% 50%;
+  transition-duration: var(--ripple-duration);
+  z-index: var(--z-index-high);
+
+  &.rippleRestarting {
+    opacity: var(--ripple-final-opacity);
     transition-property: none;
   }
-.ripple.rippleActive {
-    opacity: 0.3;
-    transition-property: -webkit-transform;
+
+  &.rippleActive {
+    opacity: var(--ripple-final-opacity);
     transition-property: transform;
-    transition-property: transform, -webkit-transform;
   }
-.ripple:not(.rippleActive):not(.rippleRestarting) {
+
+  &:not(.rippleActive):not(.rippleRestarting) {
     opacity: 0;
-    transition-property: opacity, -webkit-transform;
     transition-property: opacity, transform;
-    transition-property: opacity, transform, -webkit-transform;
   }
+}
