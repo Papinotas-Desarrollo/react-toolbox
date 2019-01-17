@@ -1,22 +1,18 @@
 {
-  "name": "react-toolbox",
-  "description": "A set of React components implementing Google's Material Design specification with the power of CSS Modules.",
-  "homepage": "http://www.react-toolbox.io",
-  "version": "2.0.0-beta.13",
+  "name": "react-toolbox-papinotas",
+  "description": "A react-toolbox fork, allows to use some unpublished fixes in the main repository",
+  "homepage": "http://react-toolbox.io/",
+  "version": "1.0.0",
   "main": "./lib",
   "module": "./components",
+  "typings": "./index.d.ts",
   "author": {
-    "email": "javier.velasco86@gmail.com",
-    "name": "Javier Velasco Arjona",
-    "url": "http://javivelasco.com/"
+    "email": "esteban@papinotas.com",
+    "name": "Esteban Piñones"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/react-toolbox/react-toolbox.git"
-  },
-  "bugs": {
-    "email": "issues@react-toolbox.io",
-    "url": "https://github.com/react-toolbox/react-toolbox/issues"
+    "url": "https://github.com/Papinotas-Desarrollo/react-toolbox"
   },
   "keywords": [
     "components",
