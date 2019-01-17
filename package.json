@@ -3,7 +3,7 @@
   "description": "A react-toolbox fork, allows to use some unpublished fixes in the main repository",
   "homepage": "http://react-toolbox.io/",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./lib",
   "module": "./components",
   "typings": "./index.d.ts",
