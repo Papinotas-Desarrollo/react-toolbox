@@ -4,3 +4,16 @@ npm-debug.log
 .idea
 .DS_Store
 .vscode
+
+# npm ignore mock
+.*rc
+.eslintignore
+.csscomb.json
+.*.yml
+.editorconfig
+karma.conf.js
+server.js
+tests.webpack.js
+webpack.config.*
+docs
+spec
