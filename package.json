@@ -2,7 +2,7 @@
   "name": "react-toolbox-papinotas",
   "description": "A react-toolbox fork, allows to use some unpublished fixes in the main repository",
   "homepage": "http://react-toolbox.io/",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "main": "./lib",
   "module": "./components",
   "typings": "./index.d.ts",

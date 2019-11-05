@@ -30,6 +30,8 @@
         "optionalDependencies": false,
         "peerDependencies": false
       }
-    ]
+    ],
+    "camelcase": 0,
+    "react/sort-comp": 0
   }
 }

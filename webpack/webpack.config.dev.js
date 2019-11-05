@@ -69,5 +69,12 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
       VERSION: JSON.stringify(pkg.version)
     })
-  ]
+  ],
+  stats: {
+    excludeModules: [
+      'react-toolbox',
+      /react-toolbox/,
+      (moduleSource) => true
+    ]
+  }
 };
